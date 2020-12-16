@@ -9,36 +9,30 @@ import java.util.ArrayList;
 public class FinalExamMedium {
 
     ArrayList<Monster> arrMonster = new ArrayList<>();
+    String[]  monsterNames = new String[]{"Dragon", "Bull", "Tortoise"};
 
     public void addOneDragon(){
+        // TODO: write your code here.
         arrMonster.add(new Dragon());
     }
 
     public void addOneBull(){
         // TODO: write your code here.
-
+        arrMonster.add(new Bull());
     }
 
     public void addOneTortoise(){
         // TODO: write your code here.
-
+        arrMonster.add(new Tortoise());
     }
 
     public void sortArrUsingComparableInterface(){
         // TODO: write your code here.
-        // The sorting & comparison should be based on the sum of (strength + agility + intelligence) value.
-        // For example, if we have:
-        // arrMonster[0] = [ Dragon: S = 38, A = 10, I = 10, TOTAL = 58 ]
-        // arrMonster[1] = [ Tortoise: S = 8, A = 33, I = 6, TOTAL = 47 ]
-        // arrMonster[2] = [ Bull: S = 12, A = 33, I = 9, TOTAL = 54 ]
-        // Then, after calling sortArrUsingComparableInterface() function, we will have:
-        // arrMonster[0] = [ Tortoise: S = 8, A = 33, I = 6, TOTAL = 47 ]
-        // arrMonster[1] = [ Bull: S = 12, A = 33, I = 9, TOTAL = 54 ]
-        // arrMonster[2] = [ Dragon: S = 38, A = 10, I = 10, TOTAL = 58 ]
-
+        Collections.sort(arrMonster);
     }
 
     public void cloneLastMonster(){
+        // TODO: write your code here.
 
         if(arrMonster.size() == 0)
             return;
@@ -50,7 +44,7 @@ public class FinalExamMedium {
         clone.strength = arrMonster.get(size - 1).strength;
         clone.agility = arrMonster.get(size - 1).agility;
 
-        // TODO: write your code here.
+        arrMonster.add(clone);
     }
 
     public void upgradeLastMonster(){
@@ -61,14 +55,20 @@ public class FinalExamMedium {
         //  then, after calling this function,
         //  the monster should have intelligence = 40, strength = 22, agility = 6
 
+        // TODO: write your code here.
+
         if(arrMonster.size() == 0)
             return;
 
-        // TODO: write your code here.
-
+        int size = arrMonster.size();
+        Monster m = arrMonster.get(size - 1);
+        m.strength *= 2;
+        m.agility *= 2;
+        m.intelligence *= 2;
     }
 
     public void removeAllDragons(){
+        // TODO: write your code here.
         ArrayList<Monster> monstersToRemove = new ArrayList<>();
         for(Monster m : arrMonster)
             if(m.name.equalsIgnoreCase("Dragon"))
@@ -79,32 +79,43 @@ public class FinalExamMedium {
 
     public void removeAllBulls(){
         // TODO: write your code here.
+        ArrayList<Monster> monstersToRemove = new ArrayList<>();
+        for(Monster m : arrMonster)
+            if(m.name.equalsIgnoreCase("Bull"))
+                monstersToRemove.add(m);
+
+        arrMonster.removeAll(monstersToRemove);
 
     }
 
     public void removeAllTortoise(){
         // TODO: write your code here.
+        ArrayList<Monster> monstersToRemove = new ArrayList<>();
+        for(Monster m : arrMonster)
+            if(m.name.equalsIgnoreCase("Tortoise"))
+                monstersToRemove.add(m);
 
+        arrMonster.removeAll(monstersToRemove);
 
     }
 
     public void saveArrToTextFile() throws IOException {
-        // This function goes in pair with loadArrFromTextFile().
-        // It's up to you to conceive how the data should be saved.
+        // This function won't be tested, it's up to you to conceive how the data should be saved.
         // We will call saveArrToTextFile() first and then loadArrToTextFile(), if we have the same arrMonster,
         // then it's OK.
-
-        BufferedWriter bw = new BufferedWriter(new FileWriter("file.txt"));
         // TODO: write your code here.
-
-
+        BufferedWriter bw = new BufferedWriter(new FileWriter("file.txt"));
+        for(Monster m : arrMonster){
+            bw.write(m.name + " ");
+            bw.write(m.strength + " ");
+            bw.write(m.intelligence + " ");
+            bw.write(m.agility + "\n");
+        }
         bw.close();
     }
 
     public void loadArrFromTextFile() throws IOException {
-        // ATTENTION: Don't modify this function!!!
-        // ATTENTION: Don't modify this function!!!
-        // ATTENTION: Don't modify this function!!!
+        // TODO: write your code here.
         BufferedReader br = new BufferedReader(new FileReader("file.txt"));
         String str = br.readLine();
         arrMonster.clear();
@@ -132,4 +143,6 @@ public class FinalExamMedium {
         }
         System.out.println("\n--------------------------\n");
     }
+
+    
 }
